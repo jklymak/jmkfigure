@@ -1,9 +1,26 @@
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.units as munits
+import matplotlib.dates as mdates
+import numpy as np
+import datetime
+
+converter = mdates.ConciseDateConverter()
+munits.registry[np.datetime64] = converter
+munits.registry[datetime.date] = converter
+munits.registry[datetime.datetime] = converter
+
+def onewidths(nrows=1, ncols=1, vext=0.3, **kwargs):
+    wid = 255 / 72
+    height = 10 * vext
+    fsize = kwargs.pop('figsize', None)
+    if fsize is None:
+        fsize = (wid, height)
+    return plt.subplots(nrows, ncols, figsize=fsize, **kwargs)
 
 def djmkfigure(width,vext):
     """
-    djmkfigure(width,vext):
+    djmkfigure(width, vext):
     width is column widths, and vext is fractional 10 page height.
     """
     wid = 3*width+3./8.;

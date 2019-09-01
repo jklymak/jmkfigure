@@ -11,12 +11,24 @@ munits.registry[datetime.date] = converter
 munits.registry[datetime.datetime] = converter
 
 def onewidths(nrows=1, ncols=1, vext=0.3, **kwargs):
+    """
+    """
     wid = 255 / 72
     height = 10 * vext
     fsize = kwargs.pop('figsize', None)
     if fsize is None:
         fsize = (wid, height)
     return plt.subplots(nrows, ncols, figsize=fsize, **kwargs)
+
+
+def twowidths(nrows=1, ncols=1, vext=0.3, **kwargs):
+    wid = 539 / 72
+    height = 10 * vext
+    fsize = kwargs.pop('figsize', None)
+    if fsize is None:
+        fsize = (wid, height)
+    return plt.subplots(nrows, ncols, figsize=fsize, **kwargs)
+
 
 def djmkfigure(width,vext):
     """

@@ -7,11 +7,6 @@ import matplotlib.colors as mcolors
 import numpy as np
 import datetime
 
-converter = mdates.ConciseDateConverter()
-munits.registry[np.datetime64] = converter
-munits.registry[datetime.date] = converter
-munits.registry[datetime.datetime] = converter
-
 def onewidths(nrows=1, ncols=1, vext=0.3, **kwargs):
     """
     """
@@ -146,3 +141,7 @@ cmap=mcolors.ListedColormap(turbo_colormap_data)
 matplotlib.cm.register_cmap(name='turbo', cmap=cmap)
 cmap=mcolors.ListedColormap(turbo_colormap_data[::-1])
 matplotlib.cm.register_cmap(name='turbo_r', cmap=cmap)
+
+munits.registry[np.datetime64] = mdates.ConciseDateConverter()
+munits.registry[datetime.date] = mdates.ConciseDateConverter()
+munits.registry[datetime.datetime] = mdates.ConciseDateConverter()
